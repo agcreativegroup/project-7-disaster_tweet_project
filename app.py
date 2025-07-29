@@ -25,7 +25,7 @@ def clean_text(text):
     text = re.sub(r'[^a-z\s]', ' ', text)
     return re.sub(r'\s+', ' ', text).strip()
 
-# Simulate sentiment score (you can replace with actual VADER)
+# Simulate sentiment score 
 def real_sentiment(text):
     return sia.polarity_scores(text)
 
