@@ -52,8 +52,9 @@ def index():
         scaled_meta = scaler.transform(meta)
         final_input = hstack((tfidf_vec, scaled_meta))
 
-        pred = model.predict(final_input)[0]
-        result = "Disaster Tweet" if pred == 1 else " Not a Disaster Tweet"
+        proba = model.predict_proba(final_input)[0][1]  # Probability of class 1 (disaster)
+        result = f"{'Disaster Tweet' if proba >= 0.5 else 'Not a Disaster Tweet'} (Confidence: {proba:.2f})"
+
         
         #Append only if tweet exists (POST method)
         history.append((tweet, result))
